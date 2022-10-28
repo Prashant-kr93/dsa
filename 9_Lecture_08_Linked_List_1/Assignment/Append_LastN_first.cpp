@@ -1,15 +1,24 @@
 /*
-You have been given a singly linked list of integers along with an integer 'N'. Write a function to append the last 'N' nodes towards the front of the singly linked list and returns the new head to the list.
+You have been given a singly linked list of integers along with an integer 'N'. 
+Write a function to append the last 'N' nodes towards the front of the 
+singly linked list and returns the new head to the list.
+
 Input format :
-The first line contains an Integer 't' which denotes the number of test cases or queries to be run. Then the test cases follow.
+The first line contains an Integer 't' which denotes the number of 
+test cases or queries to be run. Then the test cases follow.
 
-The first line of each test case or query contains the elements of the singly linked list separated by a single space. 
+The first line of each test case or query contains the 
+elements of the singly linked list separated by a single space. 
 
-The second line contains the integer value 'N'. It denotes the number of nodes to be moved from last to the front of the singly linked list.
+The second line contains the integer value 'N'. It denotes the 
+number of nodes to be moved from last to the front of the singly linked list.
 Remember/Consider :
-While specifying the list elements for input, -1 indicates the end of the singly linked list and hence, would never be a list element.
+While specifying the list elements for input, -1 indicates the end of 
+the singly linked list and hence, would never be a list element.
+
 Output format :
-For each test case/query, print the resulting singly linked list of integers in a row, separated by a single space.
+For each test case/query, print the resulting singly linked 
+list of integers in a row, separated by a single space.
 
 Output for every test case will be printed in a seperate line.
 Constraints :
@@ -95,28 +104,54 @@ int lengthLL(Node* head){
     return 1 + lengthLL(head->next);
 }
 
-Node *appendLastNToFirst(Node*head, int n){
+Node *appendLastNToFirst(Node*head, int n)
+{
     int l = lengthLL(head);
-    Node * temp = head;
-    Node* tail = head;
-    int i = 0;
-    while (i<l-n-1 && temp!= NULL)
+    Node *temp = head;
+    Node *tail = head;
+    int i =0;
+    //first reach to the pointer whose next become head for final 
+    while (i < (l-n-1) && temp != NULL)
     {
         temp = temp->next;
-        tail = tail->next;
+        tail = tail ->next; // increase ponter for finding tail
         i++;
     }
-    while (i<l-1 && tail != NULL)
+    while (i< l-1 && tail != NULL) // find tail of old ll
     {
-        tail = tail->next;
+        tail = tail ->next;
         i++;
     }
-    tail->next = head;
+
+    tail->next = head; // attach original head to tail of orginal LL
     head = temp->next;
 
-    //Deleting the previous connection
+    //Deleteing the previous connection
     temp->next = NULL;
     return head;
+
+
+    // int l = lengthLL(head);
+    // Node * temp = head;
+    // Node* tail = head;
+    // int i = 0;
+    // while (i<l-n-1 && temp!= NULL)
+    // {
+    //     temp = temp->next;
+    //     tail = tail->next;
+    //     i++;
+    // }
+    // while (i<l-1 && tail != NULL)
+    // {
+    //     tail = tail->next;
+    //     i++;
+    // }
+    // tail->next = head;
+    // head = temp->next;
+
+    // //Deleting the previous connection
+    // temp->next = NULL;
+    // return head;
 
 
     
